@@ -1,0 +1,18 @@
+{
+  "name": "explorer-web",
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "bun --filter frontend dev",
+    "dev:backend": "bun --filter backend dev",
+    "backend:generate": "bun --filter backend generate",
+    "backend:migrate": "bun --filter backend migrate",
+    "backend:seed": "bun --filter backend seed",
+    "backend:integration-test": "bun --filter backend test:integration",
+    "backend:unit-test": "bun --filter backend test",
+    "frontend:unit-test": "bun --filter frontend test:unit"
+  }
+}
