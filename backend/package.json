@@ -27,7 +27,7 @@
     "migrate": "bun run src/db/setup.ts && drizzle-kit migrate",
     "generate": "drizzle-kit generate",
     "seed": "bun run src/db/seed.ts",
-    "test:integration": "DATABASE_URL=postgres://test_user:test_password@localhost:5433/explorer_test_db bun test test/integration.spec.ts",
-    "test": "bun test"
+    "test:integration": "DATABASE_URL=postgres://test_user:test_password@localhost:5433/explorer_test_db bun test .test.ts",
+    "test:unit": "bun test .spec.ts"
   }
 }

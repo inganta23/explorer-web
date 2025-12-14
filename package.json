@@ -12,7 +12,7 @@
     "backend:migrate": "bun --filter backend migrate",
     "backend:seed": "bun --filter backend seed",
     "backend:integration-test": "bun --filter backend test:integration",
-    "backend:unit-test": "bun --filter backend test",
+    "backend:unit-test": "bun --filter backend test:unit",
     "frontend:unit-test": "bun --filter frontend test:unit"
   }
 }
