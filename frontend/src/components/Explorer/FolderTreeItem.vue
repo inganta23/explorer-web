@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
 import type { FolderNode } from '@/types/explorer'
 
 const props = defineProps<{
