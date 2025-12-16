@@ -132,7 +132,7 @@ These tests require a real database. We use Docker to spin up a clean test insta
 
 ```bash
 # Run this once before testing
-# ⚠️ Note the path: packages/backend/...
+# ⚠️ Note the path: backend/...
 docker-compose -f backend/docker-compose.test.yml up -d
 ```
 
