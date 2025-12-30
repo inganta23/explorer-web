@@ -66,46 +66,7 @@ export class FilesRepository {
   async deleteFile(id: string): Promise<void> {
     await db.delete(files).where(eq(files.id, id));
   }
-
-  async getAllFilesInTree(folderId: string): Promise<FileModel[]> {
-    const query = sql<FileModel>`
-      WITH RECURSIVE folder_tree AS (
-          SELECT id
-          FROM folders
-          WHERE id = ${folderId} -- Drizzle handles safe interpolation here!
-
-          UNION ALL
-
-          SELECT f.id
-          FROM folders f
-          INNER JOIN folder_tree ft ON f.parent_id = ft.id
-      )
-      SELECT
-        -- You must explicitly select all columns you need for the result to match FileModel
-        ${files.id},
-        ${files.name},
-        ${files.folderId},
-        ${files.size},
-        ${files.mimeType},
-        ${files.createdAt},
-        ${files.updatedAt}
-      FROM ${files}
-      WHERE ${files.folderId} IN (SELECT id FROM folder_tree)
-      ORDER BY ${files.createdAt} DESC;
-  `;
-    const rawResult = await db.execute(query);
-
-    return (rawResult as Record<string, unknown>[]).map((row) => ({
-      id: String(row.id),
-      name: String(row.name),
-      folderId: String(row.folderId),
-      size: row.size === null ? 0 : Number(row.size),
-      mimeType: row.mimeType === null ? null : String(row.mimeType),
-      createdAt: new Date(row.createdAt as string),
-      updatedAt: new Date(row.updatedAt as string),
-    })) as FileModel[];
-  }
-
+  
   async searchFiles(query: string): Promise<FileModel[]> {
     const rows = await db
       .select()
